@@ -15,6 +15,7 @@ async function fetchAndReplace(request) {
   {
     // Return modified response.
     return new Response(maintPage, {
+      status: 503,
       headers: modifiedHeaders
     })
   }
