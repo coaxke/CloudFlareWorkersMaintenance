@@ -1,4 +1,8 @@
-﻿addEventListener("fetch", event => {
+const white_list = [
+'1.1.1.1',
+'123.123.123.123'
+];
+addEventListener("fetch", event => {
   event.respondWith(fetchAndReplace(event.request))
 })
 
@@ -10,19 +14,19 @@ async function fetchAndReplace(request) {
   modifiedHeaders.append('Pragma', 'no-cache')
 
 
-  //Return maint page if you're not calling from a trusted IP
-  if (request.headers.get("cf-connecting-ip") !== "123.123.123.123") 
+  //Allow users from trusted into site
+  if (white_list.indexOf(request.headers.get("cf-connecting-ip")) > -1) 
+  {
+    //Fire all other requests directly to our WebServers
+    return fetch(request)
+  }
+  else //Return maint page if you're not calling from a trusted IP
   {
     // Return modified response.
     return new Response(maintPage, {
       status: 503,
       headers: modifiedHeaders
     })
-  }
-  else //Allow users from trusted into site
-  {
-    //Fire all other requests directly to our WebServers
-    return fetch(request)
   }
 }
 
