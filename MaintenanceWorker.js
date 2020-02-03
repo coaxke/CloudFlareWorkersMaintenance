@@ -69,7 +69,7 @@ let maintPage = `
         <div class="background">
             <div class="content">
         <h1>We&rsquo;ll be back soon!</h1>        
-            <p>We're very orry for the inconvenience but we&rsquo;re performing maintenance. Please check back soon...</p>
+            <p>We&rsquo;re very sorry for the inconvenience but we&rsquo;re performing maintenance. Please check back soon...</p>
             <p>&mdash; <B><font color="red">{</font></B>RESDEVOPS<B><font color="red">}</font></B> Team</p>
         </div>
     </div>
